@@ -1,6 +1,7 @@
 import Dashboard from "../pages/Dashboard";
 import Students from "~/pages/Students";
 import Login from "~/pages/Login";
+import StudentDetails from "~/pages/StudentDetails";
 export interface Route {
   path: string;
   component: React.ComponentType;
@@ -10,6 +11,7 @@ export interface Route {
 const publicRoutes: Route[] = [
   { path: "/", component: Dashboard },
   { path: "/students", component: Students },
+  { path: "/students/:id", component: StudentDetails },
   
 ];
 

@@ -1,6 +1,9 @@
 import { Box, TextField, Button, Typography, Stack } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate()
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -70,6 +73,8 @@ const Login = () => {
               size="large"
               fullWidth
               sx={{ mt: 2 }}
+
+              onClick={() => navigate('/')}
             >
               Submit
             </Button>

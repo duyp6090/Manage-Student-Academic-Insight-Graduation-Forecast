@@ -32,7 +32,7 @@ function Sidebar(): JSX.Element {
               }`}
             >
               <MdOutlineDashboard size={24} className="ml-3" />
-              <span className="ml-3">Dashboard</span>
+              <span className="ml-3">Bảng điều khiển</span>
             </li>
           </NavLink>
           <NavLink
@@ -45,7 +45,7 @@ function Sidebar(): JSX.Element {
               }`}
             >
               <PiStudentBold size={24} className="ml-3" />
-              <span className="ml-3">Students</span>
+              <span className="ml-3">Sinh viên</span>
             </li>
           </NavLink>
         </ul>

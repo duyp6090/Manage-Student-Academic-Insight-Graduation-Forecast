@@ -1,47 +1,10 @@
 import MUIDataTable from "mui-datatables";
 import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-// Kiểu dữ liệu cho điểm trung bình của sinh viên
-interface AverageScore {
-  _id: string;
-  studentId: string;
-  averageScore: number; // Có thể là số âm, cần xử lý cẩn thận
-  semester: string;
-  academicYear: string;
-}
-
-// Kiểu dữ liệu cho điểm rèn luyện của sinh viên
-interface TrainingPoint {
-  _id: string;
-  studentId: string;
-  trainingPoint: number; // Điểm rèn luyện (có thể là từ 0-100)
-  semester: string;
-  academicYear: string;
-}
-
-// Kiểu dữ liệu chính cho thông tin sinh viên
-interface Student {
-  _id: string;
-  studentId: string;
-  name: string;
-  admissionMethod: string;
-  gender: "Male" | "Female" | string; // Giới tính có thể thêm các giá trị khác nếu cần
-  faculty: string; // Khoa
-  educationSystem: string; // Hệ đào tạo
-  majorCode: string; // Mã ngành
-  admissionScore: number; // Điểm xét tuyển
-  placeOfBirth: string; // Nơi sinh
-  phoneNumber: string; // Số điện thoại
-  email: string; // Email liên lạc
-  averageScores: AverageScore[]; // Danh sách điểm trung bình
-  trainingPoints: TrainingPoint[]; // Danh sách điểm rèn luyện
-}
-
-interface statusData {
-  message: string;
-  data: string[];
-}
+import { Student, TrainingPoint, AverageScore, statusData } from "~/type/student";
 
 const columns = [
   "MSSV",
@@ -53,6 +16,8 @@ const columns = [
 ];
 
 function Students(): JSX.Element {
+  const navigate = useNavigate()
+
   const [students, setStudents] = useState<Student[]>([]); // State kiểu mảng các đối tượng Student
   const [data, setData] = useState<string[][]>([]); // State để lưu trữ dữ liệu cho bảng
   const [statusData, setStatusData] = useState<statusData>(); // State để lưu trữ dữ liệu trạng thái từ API
@@ -84,10 +49,20 @@ function Students(): JSX.Element {
 
   // Hàm gọi API để lấy điểm trạng thái của sinh viên
   const fetchStatusData = () => {
-    axios
-      .get<statusData>("http://localhost:3000/api/students-to-csv")
+    const apiCall = axios.get<statusData>("http://localhost:3000/api/students-to-csv");
+  
+    toast.promise(
+      apiCall,
+      {
+        pending: "Đang dự đoán...",
+        success: "Lấy dữ liệu dự đoán thành công!",
+        error: "Đã có lỗi xảy ra.",
+      },
+    );
+  
+    apiCall
       .then((response: AxiosResponse<statusData>) => {
-        setStatusData(response.data); // Lưu dữ liệu trạng thái
+        setStatusData(response.data);
       })
       .catch((error) => {
         console.error("Error fetching status data:", error);
@@ -114,7 +89,13 @@ function Students(): JSX.Element {
   }, [statusData]);
 
   const options = {
-    filterType: "checkbox",
+    // filterType: "checkbox",
+    onRowClick: (rowData: string[], rowMeta: { dataIndex: number }) => {
+      const studentId = students[rowMeta.dataIndex]?.studentId; // Lấy MSSV từ danh sách sinh viên
+      if (studentId) {
+        navigate(`/students/${studentId}`); // Điều hướng tới trang chi tiết sinh viên
+      }
+    },
   };
 
   return (
@@ -130,7 +111,7 @@ function Students(): JSX.Element {
           title={"Danh sách sinh viên"}
           data={data}
           columns={[...columns, "Trạng thái"]} // Thêm cột "Trạng thái"
-          // options={options}
+          options={options}
         />
       </div>
     </div>
