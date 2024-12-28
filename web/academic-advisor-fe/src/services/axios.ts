@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 
-const BE_BASE_URL: string = 'http://localhost:8080';
+const BE_BASE_URL: string = 'http://localhost:3000';
 
 
 const response: AxiosInstance = axios.create({
