@@ -66,7 +66,7 @@ This screen provides a secure login system for authorized users. The interface i
 
 ![image.png](media/login_image.png)
 
-*A simple login page with a welcoming design, input fields for username and password, and a "Submit" button.*
+*A simple login page with a welcoming design, input fields for username and password, and a "Log in" button.*
 
 ### 4.2. Dashboard Interface
 
