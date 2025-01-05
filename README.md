@@ -64,7 +64,7 @@ This screen provides a secure login system for authorized users. The interface i
 - Fields for username and password input.
 - A clean and intuitive design that ensures ease of use.
 
-![image.png](media/image%201.png)
+![image.png](media/login_image.png)
 
 *A simple login page with a welcoming design, input fields for username and password, and a "Submit" button.*
 
