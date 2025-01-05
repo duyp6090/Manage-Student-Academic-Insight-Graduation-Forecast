@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { response } from "~/services/axios";
+import image from '~/assets/uit-bg.jpg'
 interface User {
   account: string,
   password: string
@@ -40,8 +41,10 @@ const Login = () => {
     }
   }
   return (
-    <div className="inset-0 flex items-center justify-center bg-teal-200 min-h-screen">
+    <div className="inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat min-h-screen"
+        style={{ backgroundImage: `url(${image})`}}>
       <div className="bg-slate-100 px-20 py-8 mx-auto rounded-lg w-5/12">
+        <h1 className="text-3xl font-semibold text-blue-600 my-4">Sign in</h1>
         <form onSubmit={handleSubmit} className="w-full mx-auto">
           <div className="mb-5">
             <label

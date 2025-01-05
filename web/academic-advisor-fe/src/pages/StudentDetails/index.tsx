@@ -16,11 +16,10 @@ import {
 
 function mapPerformanceLevel(value: number): string {
   const performanceMap = {
-    0: "Giỏi/xuất sắc",
+    0: "Giỏi/Xuất sắc",
     1: "Khá",
-    2: "Trung bình khá",
-    3: "Trung bình",
-    4: "Chưa đạt",
+    2: "Trung bình khá/Trung bình",
+    3: "Chưa đạt",
   };
 
   if (value in performanceMap) {
@@ -72,10 +71,9 @@ function StudentDetails(): JSX.Element {
     if (statusData && statusData.data.length > 0) {
       // Mảng các giá trị trạng thái
       const statusLabels = [
-        "Giỏi/xuất sắc",
+        "Giỏi/Xuất sắc",
         "Khá",
-        "Trung bình khá",
-        "Trung bình",
+        "Trung bình khá/Trung bình",
         "Chưa đạt",
       ];
 
@@ -107,9 +105,9 @@ function StudentDetails(): JSX.Element {
               {statusData && (
                 <div
                   className={`px-2 py-1 rounded-lg text-white mx-auto ${
-                    statusData.data[0] === "4"
+                    statusData.data[0] === "3"
                       ? "bg-red-700"
-                      : statusData.data[0] === "3"
+                      : statusData.data[0] === "2"
                       ? "bg-orange-700"
                       : "bg-green-500"
                   }`}

@@ -27,14 +27,11 @@ const convertInforStudientToCsv = async (students) => {
         });
 
         const admissionMethodColumns = {
-            THPT:
-                student.admissionMethod === "THPT" ||
-                student.admissionMethod === "ƯT-ĐHQG" ||
-                student.admissionMethod === "ƯT-Bộ"
-                    ? 1
-                    : 0,
+            THPT: student.admissionMethod === "THPT" ? 1 : 0,
             ĐGNL: student.admissionMethod === "ĐGNL" ? 1 : 0,
             OTHER: student.admissionMethod === "Khác" ? 1 : 0,
+            "ƯT-Bộ": student.admissionMethod === "ƯT-Bộ" ? 1 : 0,
+            "ƯT-ĐHQG": student.admissionMethod === "ƯT-ĐHQG" ? 1 : 0,
         };
 
         return {
@@ -43,6 +40,8 @@ const convertInforStudientToCsv = async (students) => {
             OTHER: admissionMethodColumns.OTHER,
             THPT: admissionMethodColumns.THPT,
             ĐGNL: admissionMethodColumns["ĐGNL"],
+            "ƯT-Bộ": admissionMethodColumns["ƯT-Bộ"],
+            "ƯT-ĐHQG": admissionMethodColumns["ƯT-ĐHQG"],
             majorCode: student.majorCode || "N/A",
             educationSystem: student.educationSystem || "N/A",
             faculty: student.faculty || "N/A",
@@ -58,12 +57,14 @@ const convertInforStudientToCsv = async (students) => {
         "OTHER",
         "THPT",
         "ĐGNL",
+        "ƯT-Bộ",
+        "ƯT-ĐHQG",
         "majorCode",
         "educationSystem",
         "faculty",
         "placeOfBirth",
         ...Array.from({ length: 22 }, (_, i) => `sem${i + 1}`),
-        ...Array.from({ length: 16 }, (_, i) => `term${i + 1}`),
+        ...Array.from({ length: 16 }, (_, i) => `term ${i + 1}`),
     ];
 
     const json2csvParser = new Parser({ fields });

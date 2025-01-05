@@ -72,7 +72,7 @@ function Students(): JSX.Element {
   useEffect(() => {
     if (statusData && statusData.data.length > 0) {
       // Mảng các giá trị trạng thái
-      const statusLabels = ["Giỏi/xuất sắc", "Khá", "Trung bình khá", "Trung bình", "Chưa đạt"];
+      const statusLabels = ["Giỏi/Xuất sắc", "Khá", "Trung bình khá/Trung bình", "Chưa đạt"];
   
       // Ghép giá trị từ statusData vào phần tử cuối cùng của mỗi mảng con trong data
       const updatedData = data.map((row, index) => {
