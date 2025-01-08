@@ -14,6 +14,11 @@ const studentInfoSchema = new Schema({
         type: String,
         required: true,
     },
+    admissionScore: {
+        type: Number,
+        required: true,
+        min: 0,
+    },
     gender: {
         type: String,
         required: true,
@@ -23,14 +28,14 @@ const studentInfoSchema = new Schema({
         type: String,
         required: true,
     },
+    classOfFaculty: {
+        type: Schema.Types.ObjectId,
+        ref: "Class", // Reference to Account table
+        required: true,
+    },
     educationSystem: {
         type: String,
         required: true,
-    },
-    admissionScore: {
-        type: Number,
-        required: true,
-        min: 0,
     },
     placeOfBirth: {
         type: String,

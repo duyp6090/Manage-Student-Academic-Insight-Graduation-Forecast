@@ -13,6 +13,7 @@ const teacherSchema = new Schema({
     phoneNumber: {
         type: String,
         required: true,
+        match: /^\d{10,11}$/,
     },
     email: {
         type: String,
@@ -22,10 +23,6 @@ const teacherSchema = new Schema({
     faculty: {
         type: String,
         required: true, // Specific faculty
-    },
-    isAcdemicAdvisor: {
-        type: Boolean,
-        required: false,
     },
     officeHours: {
         type: String, // Time range to work with students

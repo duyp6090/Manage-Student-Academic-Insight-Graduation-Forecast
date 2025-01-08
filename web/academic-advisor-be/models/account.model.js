@@ -22,7 +22,7 @@ const accountSchema = new Schema({
     role: {
         type: String,
         required: true,
-        enum: ["student", "admin", "teacher"],
+        enum: ["student", "admin", "teacher", "academic-advisor"],
     },
     createdAt: {
         type: Date,
